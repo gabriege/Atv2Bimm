@@ -1,0 +1,75 @@
+
+
+package com.mycompany.mavenproject1;
+
+import java.util.Scanner;
+
+
+
+public class PesLinear {
+
+    public static void main(String[] args) {
+     
+        
+        
+       
+      Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite a quantidade de números inteiros: ");
+        int n = scanner.nextInt();
+
+        int[] numeros = new int[n];
+
+      
+        System.out.println("Digite os números inteiros:");
+
+        for (int i = 0; i < n; i++) {
+            numeros[i] = scanner.nextInt();
+        }
+
+ 
+        bubbleSort(numeros);
+
+        System.out.println("Lista ordenada:");
+        for (int numero : numeros) {
+            System.out.print(numero + " ");
+        }
+        System.out.println();
+
+        System.out.print("Digite o número a ser pesquisado: ");
+        int numeroPesquisado = scanner.nextInt();
+
+        scanner.close();
+
+        int posicao = pesquisaLinear(numeros, numeroPesquisado);
+
+        if (posicao != -1) {
+            System.out.println("O número " + numeroPesquisado + " foi encontrado na posição " + (posicao + 1) + ".");
+        } else {
+            System.out.println("O número " + numeroPesquisado + " não foi encontrado na lista.");
+        }
+    }
+
+    public static void bubbleSort(int[] array) {
+        int n = array.length;
+        for (int i = 0; i < n-1; i++) {
+            for (int j = 0; j < n-i-1; j++) {
+                if (array[j] > array[j+1]) {
+                    // troca array[j+1] e array[i]
+                    int temp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1] = temp;
+                }
+            }
+        }
+    }
+
+    public static int pesquisaLinear(int[] array, int chave) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == chave) {
+                return i;
+            }
+        }
+        return -1; // Se não encontrar, retorna -1
+    }
+}
